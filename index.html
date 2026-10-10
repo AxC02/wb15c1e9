@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Whiteboard</title>
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Board">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <header class="top">
+    <div class="tabs"><button id="tabB" class="on" type="button">Boards</button><button id="tabC" type="button">Calendar</button></div>
+    <button id="boardBtn" class="pill" type="button"><span id="boardName">Board</span> ▾</button>
+    <div class="zoom"><button id="zoomOut" type="button" aria-label="Zoom out">−</button><button id="zoomReset" type="button">100%</button><button id="zoomIn" type="button" aria-label="Zoom in">+</button></div>
+  </header>
+  <div id="viewport" class="viewport"><div id="world" class="world"></div></div>
+  <div id="empty" class="empty">Tap + to add a sticky note</div>
+  <button id="add" class="fab" type="button" aria-label="Add note">+</button>
+
+  <div id="colorSheet" class="sheet" hidden><div class="panel">
+    <h2>New note</h2><div class="colors" id="colorPick"></div>
+    <div class="row2"><button class="big" data-kind="text" type="button">Text note</button><button class="big" data-kind="list" type="button">Checklist</button></div>
+    <button class="cancel" type="button" data-close>Cancel</button></div></div>
+
+  <div id="editSheet" class="sheet" hidden><div class="panel tall">
+    <input id="edTitle" class="title-in" placeholder="Title" maxlength="80">
+    <div class="seg"><button type="button" data-mode="text">Text</button><button type="button" data-mode="list">Checklist</button></div>
+    <textarea id="edText" placeholder="Write anything…"></textarea>
+    <div id="edList"><ul id="items"></ul><form id="addItem" class="additem"><input id="itemIn" placeholder="Add an item" enterkeyhint="done"><button type="submit">Add</button></form></div>
+    <div class="colors" id="edColors"></div>
+    <div class="row2"><button id="delNote" class="big danger" type="button">Delete</button><button class="big primary" type="button" data-close>Done</button></div>
+  </div></div>
+
+  <div id="boardSheet" class="sheet" hidden><div class="panel tall">
+    <h2>Boards</h2><ul id="boards" class="boards"></ul>
+    <button id="newBoard" class="big primary" type="button">+ New board</button>
+    <div class="row2"><button id="exportBtn" class="big" type="button">Export backup</button><button id="importBtn" class="big" type="button">Import backup</button></div>
+    <input id="importFile" type="file" accept="application/json,.json" hidden>
+    <button class="cancel" type="button" data-close>Close</button></div></div>
+
+  <section id="cal" class="cal" hidden>
+    <div class="calhead"><button id="prevM" type="button" aria-label="Previous month">‹</button><h2 id="monthName"></h2><button id="nextM" type="button" aria-label="Next month">›</button></div>
+    <div class="dow"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+    <div id="grid" class="grid"></div>
+    <button id="todayBtn" class="big" type="button">Today</button>
+  </section>
+  <div id="daySheet" class="sheet" hidden><div class="panel tall">
+    <h2 id="dayName"></h2><ul id="dayItems" class="dayitems"></ul>
+    <form id="dayForm" class="dayform"><input id="dayTitle" placeholder="Add an item" maxlength="120"><input id="dayTime" type="time" aria-label="Time (optional)"><button type="submit" class="big primary" id="daySubmit">Add</button></form>
+    <button class="cancel" type="button" data-close>Close</button></div></div>
+
+  <script src="app.js?v=1"></script>
+</body>
+</html>
